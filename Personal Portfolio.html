@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ananya Rao – Portfolio</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--ink:#16193a;--mute:#5b6082;--line:#dfe3f0;--a:#4f46e5;--b:#ff6a3d;--soft:#e8e9ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1226;--card:#181c3a;--ink:#eceefc;--mute:#a3a8cf;--line:#2a2f58;--a:#8b85ff;--b:#ff8a63;--soft:#23275a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1226;--card:#181c3a;--ink:#eceefc;--mute:#a3a8cf;--line:#2a2f58;--a:#8b85ff;--b:#ff8a63;--soft:#23275a;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--b);outline-offset:3px}
+
+/* navigation */
+#menu{position:absolute;opacity:0;pointer-events:none}
+.side{position:fixed;inset:0 auto 0 0;width:240px;padding:calc(env(safe-area-inset-top,0px) + 32px) 24px 24px;background:var(--card);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;z-index:20}
+.brand{font:700 22px Georgia,serif;margin-bottom:20px}
+.brand span{color:var(--b)}
+.side a.l{text-decoration:none;color:var(--mute);padding:9px 14px;border-radius:10px;position:relative;transition:color .25s,background .25s,padding-left .25s}
+.side a.l::before{content:"";position:absolute;left:0;top:50%;width:3px;height:0;background:var(--b);border-radius:3px;transform:translateY(-50%);transition:height .25s}
+.side a.l:hover,.side a.l:focus-visible{color:var(--a);background:var(--soft);padding-left:20px}
+.side a.l:hover::before{height:60%}
+.burger{display:none}
+main{margin-left:240px}
+section{padding:90px min(6vw,64px) 30px;max-width:1000px}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:28px;position:relative;padding-bottom:12px}
+h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--a),var(--b))}
+
+/* hero */
+#home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:18px;position:relative}
+.hello{color:var(--b);font-weight:600}
+h1{font-size:clamp(42px,8vw,84px);letter-spacing:-.02em}
+.type{display:inline-block;overflow:hidden;white-space:nowrap;border-right:3px solid var(--a);width:0;font:600 clamp(16px,2.6vw,24px) "Segoe UI",system-ui,sans-serif;color:var(--a);animation:typing 3.2s steps(30) .6s forwards,caret .8s step-end infinite}
+@keyframes typing{to{width:30ch}}
+@keyframes caret{50%{border-color:transparent}}
+.lead{max-width:56ch;color:var(--mute);font-size:18px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.btn{display:inline-block;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:600;border:2px solid var(--a);background:var(--a);color:#fff;transition:transform .2s,box-shadow .2s,background .2s,color .2s}
+.btn.o{background:transparent;color:var(--a)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px -8px var(--a)}
+.btn.o:hover{background:var(--a);color:#fff}
+.orb{position:absolute;right:4%;top:18%;width:min(34vw,320px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--b),var(--a));opacity:.9;display:grid;place-items:center;font:700 clamp(54px,9vw,110px) Georgia,serif;color:#fff;animation:float 6s ease-in-out infinite}
+.orb::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px dashed var(--a);opacity:.5;animation:spin 24s linear infinite}
+@keyframes float{50%{transform:translateY(-18px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:1100px){.orb{position:static;width:130px;font-size:52px;order:-1}}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.card:hover{transform:translateY(-5px);border-color:var(--a);box-shadow:0 14px 30px -16px var(--a)}
+.card h3{font-size:20px;margin-bottom:6px}
+.mute{color:var(--mute)}
+.tag{display:inline-block;font-size:13px;padding:2px 10px;border-radius:99px;background:var(--soft);color:var(--a);margin:4px 4px 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:20px}
+.facts div{padding:14px;border-left:4px solid var(--b);background:var(--card);border-radius:0 12px 12px 0}
+.facts b{display:block;font-size:13px;color:var(--mute);font-weight:600}
+
+/* education timeline */
+.tl{border-left:3px solid var(--line);margin-left:8px;display:grid;gap:22px}
+.tl .card{margin-left:24px;position:relative}
+.tl .card::before{content:"";position:absolute;left:-36px;top:26px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:4px solid var(--b);transition:transform .25s}
+.tl .card:hover::before{transform:scale(1.4)}
+.yr{font-weight:700;color:var(--b);font-size:14px}
+
+/* skills */
+.skill{margin-bottom:18px}
+.skill p{display:flex;justify-content:space-between;margin:0 0 6px;font-weight:600}
+.bar{height:12px;background:var(--soft);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--a),var(--b));animation:fill 1.6s cubic-bezier(.2,.8,.2,1) forwards;animation-timeline:view();animation-range:entry 0% entry 90%}
+@supports not (animation-timeline:view()){.bar i{animation-timeline:auto;animation-range:normal;animation-delay:.3s}}
+@keyframes fill{to{width:var(--w)}}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 40px}
+
+/* hobbies */
+.hob{text-align:center}
+.hob span{display:block;font-size:42px;transition:transform .35s}
+.hob:hover span{transform:rotate(-12deg) scale(1.3)}
+
+/* projects: css-only filter */
+.f{position:absolute;opacity:0;pointer-events:none}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.chips label{cursor:pointer;padding:7px 18px;border-radius:99px;border:2px solid var(--line);font-weight:600;transition:all .2s}
+.chips label:hover{border-color:var(--a)}
+#f-all:checked~.chips [for=f-all],#f-web:checked~.chips [for=f-web],#f-app:checked~.chips [for=f-app],#f-data:checked~.chips [for=f-data]{background:var(--a);border-color:var(--a);color:#fff}
+#f-web:focus-visible~.chips [for=f-web],#f-all:focus-visible~.chips [for=f-all],#f-app:focus-visible~.chips [for=f-app],#f-data:focus-visible~.chips [for=f-data]{outline:3px solid var(--b);outline-offset:3px}
+#f-web:checked~.grid .p:not(.web),#f-app:checked~.grid .p:not(.app),#f-data:checked~.grid .p:not(.data){display:none}
+.p{animation:pop .45s both}
+@keyframes pop{from{opacity:0;transform:scale(.92)}}
+.thumb{height:110px;border-radius:12px;margin-bottom:14px;display:grid;place-items:center;font-size:40px;background:linear-gradient(135deg,var(--a),var(--b));transition:filter .3s}
+.p:hover .thumb{filter:hue-rotate(40deg) brightness(1.1)}
+
+/* achievements */
+.ach{display:flex;gap:16px;align-items:flex-start}
+.ach .ic{flex:none;width:52px;height:52px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-size:26px}
+.ach:hover .ic{animation:wob .6s}
+@keyframes wob{25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
+
+/* resume accordion */
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:border-color .2s}
+details[open]{border-color:var(--a)}
+summary{cursor:pointer;padding:16px 20px;font-weight:700;list-style:none;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;color:var(--b);transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details>div{padding:0 20px 18px;animation:drop .35s}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}}
+details ul{margin:0;padding-left:20px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.contact a.c{display:flex;gap:12px;padding:10px 0;text-decoration:none;transition:color .2s,transform .2s}
+.contact a.c:hover{color:var(--a);transform:translateX(6px)}
+form{display:grid;gap:12px}
+input,textarea{width:100%;font:inherit;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 4px var(--soft)}
+form .btn{cursor:pointer;font:inherit;font-weight:600;justify-self:start}
+footer{margin-left:240px;padding:30px;text-align:center;color:var(--mute);font-size:14px}
+
+/* responsive nav */
+@media (max-width:860px){
+ .side{inset:0 auto 0 0;width:260px;transform:translateX(-105%);transition:transform .35s;box-shadow:12px 0 40px -12px rgba(0,0,0,.35)}
+ #menu:checked~.side{transform:none}
+ .burger{display:flex;position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:14px;z-index:30;width:46px;height:46px;border-radius:14px;background:var(--a);flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer}
+ .burger i{width:22px;height:3px;background:#fff;border-radius:3px;transition:transform .3s,opacity .3s}
+ #menu:checked~.burger i:nth-child(1){transform:translateY(8px) rotate(45deg)}
+ #menu:checked~.burger i:nth-child(2){opacity:0}
+ #menu:checked~.burger i:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+ #menu:focus-visible~.burger{outline:3px solid var(--b);outline-offset:3px}
+ main,footer{margin-left:0}
+ section{padding-top:80px}
+ #home{padding-top:100px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.type{width:30ch}.bar i{width:var(--w)}}
+</style>
+</head>
+<body>
+<input type="checkbox" id="menu" aria-label="Toggle menu">
+<label class="burger" for="menu" aria-hidden="true"><i></i><i></i><i></i></label>
+
+<nav class="side" aria-label="Main">
+ <div class="brand">Ananya<span>.</span>Rao</div>
+ <a class="l" href="#home">Home</a>
+ <a class="l" href="#about">About</a>
+ <a class="l" href="#education">Education</a>
+ <a class="l" href="#skills">Skills</a>
+ <a class="l" href="#projects">Projects</a>
+ <a class="l" href="#hobbies">Hobbies</a>
+ <a class="l" href="#achievements">Achievements</a>
+ <a class="l" href="#resume">Resume</a>
+ <a class="l" href="#contact">Contact</a>
+</nav>
+
+<main>
+<section id="home">
+ <div class="orb" aria-hidden="true">AR</div>
+ <span class="hello">Hello, I’m</span>
+ <h1>Ananya Rao</h1>
+ <span class="type">Computer Science Student &amp; Web Developer</span>
+ <p class="lead">I design and build clear, fast and accessible websites and small apps. I enjoy turning messy problems into simple tools.</p>
+ <div class="btns"><a class="btn" href="#projects">See my projects</a><a class="btn o" href="#contact">Contact me</a></div>
+</section>
+
+<section id="about">
+ <h2>About me</h2>
+ <div class="card">
+  <p>I’m a final-year B.Tech student who loves front-end development and data. I like clean layouts, readable code and projects that people actually use. Outside of class I mentor juniors and contribute to open-source.</p>
+  <div class="facts">
+   <div><b>Location</b>Andhra Pradesh, India</div>
+   <div><b>Studying</b>B.Tech, Computer Science</div>
+   <div><b>Focus</b>Web, UI design, data</div>
+   <div><b>Status</b>Open to internships</div>
+  </div>
+ </div>
+</section>
+
+<section id="education">
+ <h2>Educational qualifications</h2>
+ <div class="tl">
+  <div class="card"><span class="yr">2022 – 2026</span><h3>B.Tech, Computer Science &amp; Engineering</h3><p class="mute">Your University Name · CGPA 8.9 / 10</p></div>
+  <div class="card"><span class="yr">2020 – 2022</span><h3>Intermediate (MPC)</h3><p class="mute">Your Junior College · 96%</p></div>
+  <div class="card"><span class="yr">2020</span><h3>Secondary School (SSC)</h3><p class="mute">Your High School · 9.8 GPA</p></div>
+ </div>
+</section>
+
+<section id="skills">
+ <h2>Technical skills</h2>
+ <div class="skills">
+  <div>
+   <div class="skill"><p><span>HTML &amp; CSS</span><span>92%</span></p><div class="bar"><i style="--w:92%"></i></div></div>
+   <div class="skill"><p><span>JavaScript</span><span>80%</span></p><div class="bar"><i style="--w:80%"></i></div></div>
+   <div class="skill"><p><span>Python</span><span>85%</span></p><div class="bar"><i style="--w:85%"></i></div></div>
+  </div>
+  <div>
+   <div class="skill"><p><span>Java</span><span>74%</span></p><div class="bar"><i style="--w:74%"></i></div></div>
+   <div class="skill"><p><span>SQL &amp; Databases</span><span>78%</span></p><div class="bar"><i style="--w:78%"></i></div></div>
+   <div class="skill"><p><span>Git &amp; GitHub</span><span>82%</span></p><div class="bar"><i style="--w:82%"></i></div></div>
+  </div>
+ </div>
+ <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Figma</span><span class="tag">Linux</span><span class="tag">Pandas</span><span class="tag">REST APIs</span>
+</section>
+
+<section id="projects">
+ <h2>Projects</h2>
+ <input class="f" type="radio" name="f" id="f-all" checked aria-label="All projects">
+ <input class="f" type="radio" name="f" id="f-web" aria-label="Web projects">
+ <input class="f" type="radio" name="f" id="f-app" aria-label="App projects">
+ <input class="f" type="radio" name="f" id="f-data" aria-label="Data projects">
+ <div class="chips"><label for="f-all">All</label><label for="f-web">Web</label><label for="f-app">Apps</label><label for="f-data">Data</label></div>
+ <div class="grid">
+  <article class="card p web"><div class="thumb">🛒</div><h3>Campus Marketplace</h3><p class="mute">A buy-and-sell site for students with search, categories and a saved-items list.</p><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Node.js</span></article>
+  <article class="card p app"><div class="thumb">📚</div><h3>Study Planner</h3><p class="mute">A mobile app that turns exam dates into a daily revision schedule.</p><span class="tag">Flutter</span><span class="tag">Firebase</span></article>
+  <article class="card p data"><div class="thumb">📊</div><h3>Rainfall Insights</h3><p class="mute">Analysis and charts of 30 years of district rainfall data.</p><span class="tag">Python</span><span class="tag">Pandas</span></article>
+  <article class="card p web"><div class="thumb">🎨</div><h3>Portfolio Kit</h3><p class="mute">A reusable, responsive portfolio template built with only HTML and CSS.</p><span class="tag">HTML</span><span class="tag">CSS</span></article>
+ </div>
+</section>
+
+<section id="hobbies">
+ <h2>Hobbies</h2>
+ <div class="grid">
+  <div class="card hob"><span>📸</span><h3>Photography</h3></div>
+  <div class="card hob"><span>🎸</span><h3>Guitar</h3></div>
+  <div class="card hob"><span>♟️</span><h3>Chess</h3></div>
+  <div class="card hob"><span>✈️</span><h3>Travelling</h3></div>
+  <div class="card hob"><span>📖</span><h3>Reading</h3></div>
+ </div>
+</section>
+
+<section id="achievements">
+ <h2>Achievements</h2>
+ <div class="grid">
+  <div class="card ach"><div class="ic">🏆</div><div><h3>Hackathon winner</h3><p class="mute">First place, state-level hackathon, 2025.</p></div></div>
+  <div class="card ach"><div class="ic">🎓</div><div><h3>Merit scholarship</h3><p class="mute">Awarded for top 5% of the department.</p></div></div>
+  <div class="card ach"><div class="ic">📜</div><div><h3>Certifications</h3><p class="mute">Responsive Web Design, Python for Data Science.</p></div></div>
+  <div class="card ach"><div class="ic">⭐</div><div><h3>Open source</h3><p class="mute">20+ merged contributions on GitHub.</p></div></div>
+ </div>
+</section>
+
+<section id="resume">
+ <h2>Resume</h2>
+ <details open><summary>Experience</summary><div><ul><li><b>Web Development Intern</b>, Your Company (Jun – Aug 2025): rebuilt the landing page, cutting load time by 40%.</li><li><b>Student Mentor</b>, Coding Club (2024 – present): weekly sessions for 30+ juniors.</li></ul></div></details>
+ <details><summary>Education</summary><div><ul><li>B.Tech, Computer Science – 2026</li><li>Intermediate (MPC) – 2022</li><li>SSC – 2020</li></ul></div></details>
+ <details><summary>Skills</summary><div><p>HTML, CSS, JavaScript, Python, Java, SQL, Git, React, Figma.</p></div></details>
+ <p><a class="btn" href="resume.pdf" download>Download resume (PDF)</a></p>
+</section>
+
+<section id="contact">
+ <h2>Contact</h2>
+ <div class="contact">
+  <div class="card">
+   <a class="c" href="mailto:ananya@example.com">✉️ ananya@example.com</a>
+   <a class="c" href="tel:+910000000000">📞 +91 00000 00000</a>
+   <a class="c" href="https://github.com/">💻 github.com/ananya</a>
+   <a class="c" href="https://linkedin.com/">🔗 linkedin.com/in/ananya</a>
+  </div>
+  <form action="mailto:ananya@example.com" method="post" enctype="text/plain">
+   <input type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+   <input type="email" name="email" placeholder="Your email" aria-label="Your email" required>
+   <textarea name="message" rows="4" placeholder="Your message" aria-label="Your message" required></textarea>
+   <button class="btn" type="submit">Send message</button>
+  </form>
+ </div>
+</section>
+</main>
+<footer>© 2026 Ananya Rao · Built with only HTML and CSS</footer>
+</body>
+</html>

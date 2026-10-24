@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sunrise Care Hospital – Compassionate Healthcare</title>
+<style>
+:root{
+  --bg:#f4f8fb;--surface:#fff;--text:#14303f;--muted:#4f6877;--primary:#0b7a75;--primary-d:#075e5a;
+  --accent:#e8f5f4;--line:#d6e4ea;--danger:#c62828;--danger-bg:#fdeaea;--shadow:0 6px 24px rgba(20,48,63,.08);
+  --hero1:#0b7a75;--hero2:#14577a;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1a21;--surface:#16262f;--text:#e6f0f4;--muted:#9bb3bf;--primary:#3cc4bb;--primary-d:#2aa39b;
+    --accent:#18343a;--line:#27404c;--danger:#ff8a80;--danger-bg:#3a1d1d;--shadow:0 6px 24px rgba(0,0,0,.35);
+    --hero1:#0b5e5a;--hero2:#10405c;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1a21;--surface:#16262f;--text:#e6f0f4;--muted:#9bb3bf;--primary:#3cc4bb;--primary-d:#2aa39b;
+  --accent:#18343a;--line:#27404c;--danger:#ff8a80;--danger-bg:#3a1d1d;--shadow:0 6px 24px rgba(0,0,0,.35);
+  --hero1:#0b5e5a;--hero2:#10405c;color-scheme:dark;
+}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--primary)}
+:focus-visible{outline:3px solid #f5a623;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-999px;top:0;background:#000;color:#fff;padding:10px 16px;z-index:99}
+.skip:focus{left:10px}
+
+/* Emergency bar */
+.topbar{background:var(--danger-bg);color:var(--danger);font-weight:600;font-size:.95rem}
+.topbar .wrap{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;padding-top:8px;padding-bottom:8px}
+.topbar a{color:inherit}
+
+/* Header */
+header.site{background:var(--surface);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;position:relative}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:800;font-size:1.25rem}
+.logo span.mark{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--primary);color:#fff;font-size:1.5rem;line-height:1}
+.logo small{display:block;font-weight:500;font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+nav ul{list-style:none;display:flex;gap:4px;margin:0;padding:0;flex-wrap:wrap}
+nav a{display:block;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:600;font-size:.95rem}
+nav a:hover{background:var(--accent);color:var(--primary)}
+nav a.cta{background:var(--primary);color:#fff}
+nav a.cta:hover{background:var(--primary-d);color:#fff}
+#menu-toggle{position:absolute;opacity:0;pointer-events:none}
+.burger{display:none;cursor:pointer;padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-weight:700}
+#menu-toggle:focus-visible + .burger{outline:3px solid #f5a623;outline-offset:3px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-80px;top:-80px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;padding-top:72px;padding-bottom:72px;position:relative;z-index:1}
+.hero h1{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.15;margin:0 0 16px}
+.hero p{font-size:1.1rem;max-width:34em;margin:0 0 28px;opacity:.95}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:13px 24px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid transparent;font-size:1rem}
+.btn.white{background:#fff;color:#075e5a}
+.btn.ghost{border-color:#fff;color:#fff}
+.btn.white:hover{background:#e8f5f4}
+.btn.ghost:hover{background:rgba(255,255,255,.15)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:20px;text-align:center}
+.stat b{display:block;font-size:2rem;line-height:1.1}
+.stat span{font-size:.9rem;opacity:.9}
+
+/* Sections */
+section{padding:72px 0}
+section.alt{background:var(--surface);border-block:1px solid var(--line)}
+.head{text-align:center;max-width:640px;margin:0 auto 44px}
+.eyebrow{color:var(--primary);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:6px 0 10px;line-height:1.2}
+.head p{color:var(--muted);margin:0}
+.grid{display:grid;gap:22px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--primary)}
+section.alt .card{background:var(--bg)}
+.icon{display:grid;place-items:center;width:54px;height:54px;border-radius:14px;background:var(--accent);font-size:1.7rem;margin-bottom:14px}
+.card h3{margin:0 0 6px;font-size:1.15rem}
+.card p{margin:0;color:var(--muted);font-size:.96rem}
+
+/* Doctors */
+.doc{text-align:center}
+.avatar{display:grid;place-items:center;width:92px;height:92px;margin:0 auto 14px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--hero2));color:#fff;font-size:1.9rem;font-weight:800}
+.doc .role{color:var(--primary);font-weight:700;font-size:.92rem;margin-bottom:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.tag{background:var(--accent);color:var(--primary);padding:3px 11px;border-radius:99px;font-size:.78rem;font-weight:600}
+
+/* Facilities */
+.fac{display:flex;gap:16px;align-items:flex-start}
+.fac .icon{flex:none;margin:0}
+
+/* Hours + Emergency */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+table{width:100%;border-collapse:collapse}
+caption{text-align:left;font-weight:800;font-size:1.2rem;padding-bottom:12px}
+th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}
+th{font-weight:600}
+td{color:var(--muted)}
+.note{margin-top:14px;font-size:.9rem;color:var(--muted);background:var(--accent);padding:12px 14px;border-radius:10px}
+.emerg{background:var(--danger-bg);border-color:var(--danger)}
+.emerg h3{color:var(--danger);font-size:1.3rem}
+.big{display:block;font-size:2.6rem;font-weight:800;color:var(--danger);text-decoration:none;line-height:1.2;margin:8px 0}
+.list{list-style:none;padding:0;margin:14px 0 0}
+.list li{padding:9px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.list a{font-weight:700;text-decoration:none}
+
+/* Form */
+.formbox{max-width:820px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:var(--shadow)}
+fieldset{border:1px solid var(--line);border-radius:14px;padding:20px 20px 8px;margin:0 0 22px}
+legend{padding:0 10px;font-weight:800;color:var(--primary)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.field{margin-bottom:16px}
+label,.lab{display:block;font-weight:600;margin-bottom:6px;font-size:.95rem}
+.req{color:var(--danger)}
+input,select,textarea{width:100%;padding:12px 14px;font:inherit;color:var(--text);background:var(--bg);border:2px solid var(--line);border-radius:10px;min-height:46px}
+textarea{min-height:110px;resize:vertical}
+input:hover,select:hover,textarea:hover{border-color:var(--muted)}
+input:focus,select:focus,textarea:focus{outline:3px solid #f5a623;outline-offset:1px;border-color:var(--primary)}
+input:user-invalid,select:user-invalid{border-color:var(--danger)}
+.hint{font-size:.85rem;color:var(--muted);margin-top:4px}
+.radios{display:flex;flex-wrap:wrap;gap:10px 22px}
+.radios label{display:flex;align-items:center;gap:8px;font-weight:500;margin:0}
+.radios input,.check input{width:20px;height:20px;min-height:0;accent-color:var(--primary)}
+.check{display:flex;gap:10px;align-items:flex-start;margin-bottom:20px}
+.check label{font-weight:500;margin:0;font-size:.9rem}
+button.submit{width:100%;padding:15px;font:inherit;font-weight:800;font-size:1.05rem;background:var(--primary);color:#fff;border:0;border-radius:12px;cursor:pointer}
+button.submit:hover{background:var(--primary-d)}
+
+/* Footer */
+footer{background:#0c2430;color:#cfe0e8;padding:48px 0 24px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+footer h4{color:#fff;margin:0 0 10px}
+footer a{color:#8fe3dc}
+footer p,footer li{margin:4px 0;font-size:.93rem}
+footer ul{list-style:none;padding:0;margin:0}
+.copy{border-top:1px solid #234452;margin-top:30px;padding-top:18px;font-size:.85rem;text-align:center}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero .wrap,.two{grid-template-columns:1fr}
+  .hero .wrap{padding-top:48px;padding-bottom:48px}
+  .burger{display:block}
+  nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--shadow);z-index:20;margin:6px 20px 0}
+  nav ul{flex-direction:column}
+  #menu-toggle:checked ~ nav{display:block}
+}
+@media (max-width:600px){
+  section{padding:52px 0}
+  .row{grid-template-columns:1fr}
+  .formbox{padding:22px 16px}
+  .big{font-size:2.1rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="topbar" role="region" aria-label="Emergency notice">
+  <div class="wrap">
+    <span>🚑 24/7 Emergency: <a href="tel:108">Call 108</a> or <a href="tel:+918662500100">0866-250-0100</a></span>
+    <span>Open every day · Emergency never closes</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Sunrise Care Hospital home">
+      <span class="mark" aria-hidden="true">✚</span>
+      <span>Sunrise Care<small>Hospital</small></span>
+    </a>
+    <input type="checkbox" id="menu-toggle" aria-label="Toggle navigation menu">
+    <label class="burger" for="menu-toggle">☰ Menu</label>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#departments">Departments</a></li>
+        <li><a href="#doctors">Doctors</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#visiting">Visiting</a></li>
+        <li><a href="#emergency">Emergency</a></li>
+        <li><a class="cta" href="#appointment">Book Appointment</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div id="top" class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Caring for you, every step of the way.</h1>
+      <p>Expert doctors, modern technology and a warm, welcoming team. Sunrise Care brings multi-specialty healthcare to your family, around the clock.</p>
+      <div class="btns">
+        <a class="btn white" href="#appointment">Request an Appointment</a>
+        <a class="btn ghost" href="#emergency">Emergency Contacts</a>
+      </div>
+    </div>
+    <div class="stats" aria-label="Hospital highlights">
+      <div class="stat"><b>350+</b><span>Beds</span></div>
+      <div class="stat"><b>120+</b><span>Specialist doctors</span></div>
+      <div class="stat"><b>24/7</b><span>Emergency care</span></div>
+      <div class="stat"><b>25</b><span>Years of service</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="departments">
+  <div class="wrap">
+    <div class="head"><div class="eyebrow">Our Departments</div><h2>Complete care under one roof</h2><p>From routine check-ups to complex surgery, our departments work together for your recovery.</p></div>
+    <div class="grid g4">
+      <article class="card"><div class="icon" aria-hidden="true">❤️</div><h3>Cardiology</h3><p>Heart screening, angiography, cardiac rehabilitation and interventional procedures.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">🧠</div><h3>Neurology</h3><p>Stroke care, epilepsy, headache clinic and neuro-diagnostics.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">🦴</div><h3>Orthopaedics</h3><p>Joint replacement, sports injuries, fracture care and physiotherapy.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">👶</div><h3>Paediatrics</h3><p>Newborn care, vaccinations, growth monitoring and child wellness.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">🤰</div><h3>Obstetrics &amp; Gynaecology</h3><p>Antenatal care, safe deliveries, fertility and women’s health.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">🎗️</div><h3>Oncology</h3><p>Cancer diagnosis, chemotherapy, radiation and supportive care.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">👁️</div><h3>Ophthalmology</h3><p>Cataract surgery, retina care, glaucoma and vision correction.</p></article>
+      <article class="card"><div class="icon" aria-hidden="true">🩺</div><h3>General Medicine</h3><p>Diabetes, hypertension, infections and preventive health packages.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="doctors" class="alt">
+  <div class="wrap">
+    <div class="head"><div class="eyebrow">Our Doctors</div><h2>Meet our specialists</h2><p>Experienced, compassionate and always ready to listen.</p></div>
+    <div class="grid g4">
+      <article class="card doc"><div class="avatar" aria-hidden="true">AR</div><h3>Dr. Anjali Rao</h3><div class="role">Senior Cardiologist</div><p>MD, DM · 18 years experience</p><div class="tags"><span class="tag">Heart failure</span><span class="tag">Angioplasty</span></div></article>
+      <article class="card doc"><div class="avatar" aria-hidden="true">KR</div><h3>Dr. Kiran Reddy</h3><div class="role">Consultant Neurologist</div><p>MD, DM · 14 years experience</p><div class="tags"><span class="tag">Stroke</span><span class="tag">Epilepsy</span></div></article>
+      <article class="card doc"><div class="avatar" aria-hidden="true">SM</div><h3>Dr. Suresh Menon</h3><div class="role">Orthopaedic Surgeon</div><p>MS Ortho · 20 years experience</p><div class="tags"><span class="tag">Knee replacement</span><span class="tag">Sports injury</span></div></article>
+      <article class="card doc"><div class="avatar" aria-hidden="true">PN</div><h3>Dr. Priya Nair</h3><div class="role">Paediatrician</div><p>MD Paediatrics · 12 years experience</p><div class="tags"><span class="tag">Newborn care</span><span class="tag">Vaccination</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="facilities">
+  <div class="wrap">
+    <div class="head"><div class="eyebrow">Facilities</div><h2>Modern, safe and comfortable</h2><p>Technology and amenities designed around patients and families.</p></div>
+    <div class="grid g3">
+      <article class="card fac"><div class="icon" aria-hidden="true">🚨</div><div><h3>24/7 Emergency &amp; Trauma</h3><p>Dedicated triage, resuscitation bays and ambulance service.</p></div></article>
+      <article class="card fac"><div class="icon" aria-hidden="true">🛏️</div><div><h3>Intensive Care Units</h3><p>Medical, cardiac, neonatal and surgical ICUs with constant monitoring.</p></div></article>
+      <article class="card fac"><div class="icon" aria-hidden="true">🔬</div><div><h3>Diagnostics &amp; Imaging</h3><p>MRI, CT, digital X-ray, ultrasound and an NABL-accredited laboratory.</p></div></article>
+      <article class="card fac"><div class="icon" aria-hidden="true">💊</div><div><h3>24-hour Pharmacy</h3><p>Prescription and over-the-counter medicines available at all hours.</p></div></article>
+      <article class="card fac"><div class="icon" aria-hidden="true">🏥</div><div><h3>Operation Theatres</h3><p>Eight modular theatres with laminar airflow and advanced equipment.</p></div></article>
+      <article class="card fac"><div class="icon" aria-hidden="true">♿</div><div><h3>Accessible Campus</h3><p>Ramps, lifts, wheelchairs, parking and a comfortable cafeteria.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="visiting" class="alt">
+  <div class="wrap">
+    <div class="head"><div class="eyebrow">Visiting &amp; Outpatient Hours</div><h2>When to visit</h2><p>Please follow these hours to give patients the rest they need.</p></div>
+    <div class="two">
+      <div class="card">
+        <table>
+          <caption>Visiting hours for inpatients</caption>
+          <thead><tr><th scope="col">Ward</th><th scope="col">Hours</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">General ward</th><td>10:00–12:00 &amp; 17:00–19:00</td></tr>
+            <tr><th scope="row">Private rooms</th><td>09:00–20:00</td></tr>
+            <tr><th scope="row">ICU</th><td>11:00–11:30 &amp; 18:00–18:30</td></tr>
+            <tr><th scope="row">Maternity</th><td>16:00–19:00</td></tr>
+            <tr><th scope="row">Paediatric ward</th><td>Parents anytime; others 17:00–19:00</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Two visitors per patient at a time. Children under 12 are not permitted in ICU.</p>
+      </div>
+      <div class="card">
+        <table>
+          <caption>Outpatient clinic timings</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Hours</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Monday – Friday</th><td>08:00–20:00</td></tr>
+            <tr><th scope="row">Saturday</th><td>08:00–16:00</td></tr>
+            <tr><th scope="row">Sunday</th><td>09:00–13:00</td></tr>
+            <tr><th scope="row">Emergency</th><td>Open 24 hours, every day</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Please bring photo ID and previous medical records to your first visit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="emergency">
+  <div class="wrap">
+    <div class="two">
+      <div class="card emerg">
+        <h3>🚨 Medical emergency?</h3>
+        <p>Do not wait. Call now for an ambulance or go straight to our Emergency Department.</p>
+        <a class="big" href="tel:+918662500100" aria-label="Call emergency line 0866 250 0100">0866-250-0100</a>
+        <p>National ambulance: <strong><a href="tel:108">108</a></strong></p>
+      </div>
+      <div class="card">
+        <h3>Important contacts</h3>
+        <ul class="list">
+          <li><span>Reception &amp; enquiries</span><a href="tel:+918662500200">0866-250-0200</a></li>
+          <li><span>Ambulance dispatch</span><a href="tel:+918662500101">0866-250-0101</a></li>
+          <li><span>Blood bank</span><a href="tel:+918662500300">0866-250-0300</a></li>
+          <li><span>Email</span><a href="mailto:care@sunrisecare.example">care@sunrisecare.example</a></li>
+          <li><span>Address</span><span>12 Health Avenue, Vijayawada</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="appointment" class="alt">
+  <div class="wrap">
+    <div class="head"><div class="eyebrow">Appointments</div><h2>Request an appointment</h2><p>Fill in the form and our team will confirm your slot within one working day. Fields marked <span class="req" aria-hidden="true">*</span> are required.</p></div>
+    <form class="formbox" action="#" method="post" aria-labelledby="form-title">
+      <h3 id="form-title" style="margin-top:0">Appointment request form</h3>
+
+      <fieldset>
+        <legend>Patient details</legend>
+        <div class="row">
+          <div class="field"><label for="name">Full name <span class="req" aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="dob">Date of birth <span class="req" aria-hidden="true">*</span></label><input id="dob" name="dob" type="date" autocomplete="bday" required></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="phone">Phone number <span class="req" aria-hidden="true">*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+\-\s]{10,15}" aria-describedby="phone-hint" required><div id="phone-hint" class="hint">10–15 digits, e.g. 98765 43210</div></div>
+          <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email"></div>
+        </div>
+        <div class="field">
+          <span class="lab" id="gender-lab">Gender</span>
+          <div class="radios" role="radiogroup" aria-labelledby="gender-lab">
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="other"> Other / prefer not to say</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Appointment details</legend>
+        <div class="row">
+          <div class="field">
+            <label for="dept">Department <span class="req" aria-hidden="true">*</span></label>
+            <select id="dept" name="dept" required>
+              <option value="">Select a department</option>
+              <option>Cardiology</option><option>Neurology</option><option>Orthopaedics</option><option>Paediatrics</option>
+              <option>Obstetrics &amp; Gynaecology</option><option>Oncology</option><option>Ophthalmology</option><option>General Medicine</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="doctor">Preferred doctor</label>
+            <select id="doctor" name="doctor">
+              <option value="">No preference</option>
+              <option>Dr. Anjali Rao – Cardiology</option><option>Dr. Kiran Reddy – Neurology</option>
+              <option>Dr. Suresh Menon – Orthopaedics</option><option>Dr. Priya Nair – Paediatrics</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="date">Preferred date <span class="req" aria-hidden="true">*</span></label><input id="date" name="date" type="date" required></div>
+          <div class="field">
+            <label for="time">Preferred time</label>
+            <select id="time" name="time"><option>Morning (8am–12pm)</option><option>Afternoon (12pm–4pm)</option><option>Evening (4pm–8pm)</option></select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="reason">Reason for visit</label>
+          <textarea id="reason" name="reason" aria-describedby="reason-hint"></textarea>
+          <div id="reason-hint" class="hint">Briefly describe your symptoms. For emergencies, call 108 instead of using this form.</div>
+        </div>
+      </fieldset>
+
+      <div class="check">
+        <input id="consent" name="consent" type="checkbox" required>
+        <label for="consent">I agree to be contacted about this request and consent to my details being used to arrange my appointment. <span class="req" aria-hidden="true">*</span></label>
+      </div>
+      <button class="submit" type="submit">Send appointment request</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><h4>Sunrise Care Hospital</h4><p>Trusted multi-specialty healthcare for families, with compassion at the centre of everything we do.</p></div>
+      <div><h4>Quick links</h4><ul><li><a href="#departments">Departments</a></li><li><a href="#doctors">Doctors</a></li><li><a href="#facilities">Facilities</a></li><li><a href="#appointment">Book appointment</a></li></ul></div>
+      <div><h4>Contact</h4><p>12 Health Avenue, Vijayawada, Andhra Pradesh</p><p>Emergency: <a href="tel:+918662500100">0866-250-0100</a></p><p><a href="mailto:care@sunrisecare.example">care@sunrisecare.example</a></p></div>
+    </div>
+    <p class="copy">© 2026 Sunrise Care Hospital. Sample website for demonstration only. Not a substitute for professional medical advice.</p>
+  </div>
+</footer>
+</body>
+</html>

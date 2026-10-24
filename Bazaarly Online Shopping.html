@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bazaarly – Online Shopping</title>
+<style>
+:root{
+  --bg:#f6f5fb;--surface:#fff;--text:#1d1b2e;--muted:#6a6780;--primary:#5b3df5;--primary-d:#4529d6;
+  --accent:#ff4d6d;--gold:#f5a623;--green:#12805c;--line:#e5e2f1;--chip:#edeafd;--shadow:0 8px 28px rgba(40,30,100,.09);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#12111c;--surface:#1c1a2b;--text:#f0eefc;--muted:#a9a5c4;--primary:#8d78ff;--primary-d:#7561f0;
+  --accent:#ff7b93;--gold:#ffc255;--green:#4fd6a3;--line:#322f48;--chip:#2a2644;--shadow:0 8px 28px rgba(0,0,0,.4);color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#12111c;--surface:#1c1a2b;--text:#f0eefc;--muted:#a9a5c4;--primary:#8d78ff;--primary-d:#7561f0;
+  --accent:#ff7b93;--gold:#ffc255;--green:#4fd6a3;--line:#322f48;--chip:#2a2644;--shadow:0 8px 28px rgba(0,0,0,.4);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:60}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Announcement */
+.ann{background:var(--primary);color:#fff;text-align:center;font-size:.9rem;font-weight:600;padding:8px 12px}
+
+/* Header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:18px;padding-top:12px;padding-bottom:12px;position:relative}
+.logo{font-weight:900;font-size:1.5rem;letter-spacing:-.02em;color:var(--primary);display:flex;align-items:center;gap:8px}
+.logo i{font-style:normal;display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--primary);color:#fff;font-size:1.2rem}
+.search{flex:1;display:flex;max-width:560px}
+.search input{flex:1;min-width:0;padding:11px 16px;font:inherit;color:var(--text);background:var(--bg);border:2px solid var(--line);border-right:0;border-radius:12px 0 0 12px}
+.search input:focus{outline:3px solid var(--gold);outline-offset:0;border-color:var(--primary)}
+.search button{padding:0 20px;border:0;background:var(--primary);color:#fff;font:inherit;font-weight:700;border-radius:0 12px 12px 0;cursor:pointer}
+.search button:hover{background:var(--primary-d)}
+.icons{display:flex;gap:8px;margin-left:auto}
+.ib{position:relative;display:flex;align-items:center;gap:6px;padding:9px 13px;border-radius:12px;font-weight:600;font-size:.92rem}
+.ib:hover{background:var(--chip)}
+.ib b{position:absolute;top:0;right:2px;background:var(--accent);color:#fff;font-size:.7rem;min-width:19px;height:19px;border-radius:99px;display:grid;place-items:center}
+#nav-t{position:absolute;opacity:0;pointer-events:none}
+.burger{display:none;cursor:pointer;padding:9px 13px;border:1px solid var(--line);border-radius:10px;font-weight:700}
+#nav-t:focus-visible + .burger{outline:3px solid var(--gold);outline-offset:3px}
+.cats{border-top:1px solid var(--line)}
+.cats ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.cats a{display:block;white-space:nowrap;padding:10px 14px;font-weight:600;font-size:.92rem;color:var(--muted);border-bottom:3px solid transparent}
+.cats a:hover{color:var(--primary);border-color:var(--primary)}
+.cats .sale{color:var(--accent)}
+
+/* Hero & banners */
+.hero{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:24px}
+.banner{position:relative;overflow:hidden;border-radius:22px;padding:34px;color:#fff;display:flex;flex-direction:column;justify-content:center;min-height:200px}
+.banner.main{min-height:340px;background:linear-gradient(120deg,#5b3df5,#a23dd8 60%,#ff4d6d)}
+.banner.main::after{content:"🛍️";position:absolute;right:30px;bottom:-10px;font-size:11rem;opacity:.25;line-height:1}
+.banner.b1{background:linear-gradient(135deg,#0f9d8a,#1c6fb8)}
+.banner.b2{background:linear-gradient(135deg,#f5a623,#ff6a3d)}
+.tagline{display:inline-block;align-self:flex-start;background:rgba(255,255,255,.2);padding:4px 13px;border-radius:99px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.banner h1,.banner h2{margin:0 0 8px;line-height:1.1}
+.banner h1{font-size:clamp(2rem,4.5vw,3.4rem);max-width:12em}
+.banner h2{font-size:1.5rem}
+.banner p{margin:0 0 18px;max-width:28em;opacity:.95}
+.btn{display:inline-block;align-self:flex-start;padding:12px 24px;border-radius:12px;background:#fff;color:#2a1a8f;font-weight:800}
+.btn:hover{background:#f0ecff}
+.promos{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:18px}
+.promo{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.promo span{font-size:1.7rem}
+.promo b{display:block;font-size:.95rem}
+.promo small{color:var(--muted)}
+
+/* Shop */
+section{padding:48px 0 8px}
+.sh{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+h2.t{margin:0;font-size:clamp(1.5rem,3vw,2rem)}
+.sh p{margin:0;color:var(--muted)}
+.fi{position:absolute;opacity:0;pointer-events:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chips label{padding:8px 18px;border-radius:99px;background:var(--surface);border:1px solid var(--line);font-weight:600;font-size:.92rem;cursor:pointer}
+.chips label:hover{border-color:var(--primary)}
+#f-all:checked ~ .chips [for=f-all],#f-tech:checked ~ .chips [for=f-tech],#f-fash:checked ~ .chips [for=f-fash],
+#f-home:checked ~ .chips [for=f-home],#f-beauty:checked ~ .chips [for=f-beauty]{background:var(--primary);color:#fff;border-color:var(--primary)}
+.fi:focus-visible ~ .chips{outline:none}
+#f-tech:checked ~ .grid .p:not(.tech),#f-fash:checked ~ .grid .p:not(.fash),
+#f-home:checked ~ .grid .p:not(.home),#f-beauty:checked ~ .grid .p:not(.beauty){display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.p{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.p:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.pic{position:relative;display:grid;place-items:center;height:190px;font-size:5rem}
+.g1{background:linear-gradient(135deg,#e3ddff,#c9d8ff)}.g2{background:linear-gradient(135deg,#ffe0e6,#ffd3b8)}
+.g3{background:linear-gradient(135deg,#d6f5ea,#cfe9ff)}.g4{background:linear-gradient(135deg,#fff0c9,#ffd9d9)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pic{filter:brightness(.82)}}
+.off{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;font-size:.78rem;font-weight:800;padding:3px 10px;border-radius:99px}
+.off.new{background:var(--green)}
+.wish{position:absolute;top:10px;right:10px;width:36px;height:36px;display:grid;place-items:center;background:var(--surface);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.12);color:var(--accent)}
+.body{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1}
+.cat{font-size:.74rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.08em}
+.p h3{margin:2px 0 4px;font-size:1.05rem;line-height:1.3}
+.p .d{margin:0 0 10px;font-size:.88rem;color:var(--muted)}
+.rate{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.stars{color:var(--gold);letter-spacing:2px;font-size:1rem}
+.price{display:flex;align-items:baseline;gap:8px;margin-top:auto;margin-bottom:14px;flex-wrap:wrap}
+.price b{font-size:1.4rem}
+.price s{color:var(--muted);font-size:.92rem}
+.price em{font-style:normal;color:var(--green);font-weight:700;font-size:.85rem}
+.acts{display:grid;grid-template-columns:1fr auto;gap:8px}
+.add,.buy{padding:11px 14px;font:inherit;font-weight:700;border-radius:11px;border:2px solid var(--primary);cursor:pointer;text-align:center}
+.add{background:var(--primary);color:#fff}
+.add:hover{background:var(--primary-d);border-color:var(--primary-d)}
+.buy{background:transparent;color:var(--primary)}
+.buy:hover{background:var(--chip)}
+
+/* Deal banner & perks */
+.deal{margin-top:48px;border-radius:24px;padding:40px;background:linear-gradient(120deg,#1d1b2e,#3b2a8f);color:#fff;display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:center}
+.deal h2{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.3rem)}
+.deal p{margin:0 0 18px;opacity:.9}
+.code{display:inline-block;border:2px dashed var(--gold);color:var(--gold);padding:8px 18px;border-radius:12px;font-weight:800;letter-spacing:.15em;font-size:1.2rem}
+.deal .big{font-size:clamp(3rem,8vw,5.5rem);font-weight:900;line-height:1;text-align:center;color:var(--gold)}
+.deal .big small{display:block;font-size:1rem;font-weight:600;color:#fff;opacity:.85}
+.news{margin-top:48px;text-align:center}
+.news form{display:flex;max-width:460px;margin:14px auto 0}
+.news input{flex:1;min-width:0;padding:12px 16px;font:inherit;color:var(--text);background:var(--surface);border:2px solid var(--line);border-right:0;border-radius:12px 0 0 12px}
+.news input:focus{outline:3px solid var(--gold);outline-offset:0;border-color:var(--primary)}
+.news button{padding:0 22px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:700;border-radius:0 12px 12px 0;cursor:pointer}
+
+footer{margin-top:56px;background:#14122a;color:#cfcbe8;padding:44px 0 22px}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:26px}
+footer h4{margin:0 0 10px;color:#fff}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin:6px 0;font-size:.92rem}
+footer a:hover{color:#fff;text-decoration:underline}
+.copy{text-align:center;border-top:1px solid #2c2950;margin-top:28px;padding-top:18px;font-size:.85rem}
+
+@media (max-width:900px){
+  .hero,.deal{grid-template-columns:1fr}
+  .banner.main{min-height:280px}
+  .burger{display:block;order:3}
+  .bar{flex-wrap:wrap}
+  .search{order:5;flex-basis:100%;max-width:none}
+  .ib span{display:none}
+  .cats{display:none}
+  #nav-t:checked ~ .cats-m{display:block}
+}
+.cats-m{display:none}
+@media (max-width:900px){.cats-m{display:none;width:100%;order:6}#nav-t:checked ~ .cats-m{display:block}.cats-m a{display:block;padding:10px 6px;font-weight:600;border-bottom:1px solid var(--line)}}
+@media (max-width:520px){.banner{padding:24px}.deal{padding:26px}.grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="ann">🚚 Free delivery on orders above ₹999 · Festive sale live now</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Bazaarly home"><i aria-hidden="true">🛒</i>Bazaarly</a>
+    <form class="search" role="search" action="#" method="get">
+      <label class="sr" for="q">Search products</label>
+      <input id="q" name="q" type="search" placeholder="Search for products, brands and more">
+      <button type="submit">Search</button>
+    </form>
+    <div class="icons">
+      <a class="ib" href="#shop" aria-label="Wishlist, 3 items">♡<span>Wishlist</span><b aria-hidden="true">3</b></a>
+      <a class="ib" href="#shop" aria-label="Cart, 2 items">🛒<span>Cart</span><b aria-hidden="true">2</b></a>
+    </div>
+    <input type="checkbox" id="nav-t" aria-label="Toggle categories menu">
+    <label class="burger" for="nav-t">☰ Menu</label>
+    <nav class="cats-m" aria-label="Categories (mobile)">
+      <a href="#shop">Electronics</a><a href="#shop">Fashion</a><a href="#shop">Home &amp; Living</a><a href="#shop">Beauty</a><a href="#deal">Offers</a>
+    </nav>
+  </div>
+  <nav class="cats" aria-label="Categories">
+    <div class="wrap"><ul>
+      <li><a href="#shop">All products</a></li><li><a href="#shop">Electronics</a></li><li><a href="#shop">Fashion</a>
+      <li><a href="#shop">Home &amp; Living</a></li><li><a href="#shop">Beauty</a></li><li><a class="sale" href="#deal">🔥 Offers</a></li>
+    </ul></div>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <div class="banner main">
+        <span class="tagline">Festive Sale</span>
+        <h1>Up to 60% off on everything you love</h1>
+        <p>Top gadgets, trending fashion and home essentials at prices that make you smile.</p>
+        <a class="btn" href="#shop">Shop now →</a>
+      </div>
+      <div style="display:grid;gap:18px">
+        <div class="banner b1"><span class="tagline">New arrivals</span><h2>Smart Audio</h2><p>Headphones from ₹1,499</p><a class="btn" href="#shop">Explore</a></div>
+        <div class="banner b2"><span class="tagline">Limited time</span><h2>Style Edit</h2><p>Flat 40% off sneakers</p><a class="btn" href="#shop">Grab deals</a></div>
+      </div>
+    </div>
+
+    <div class="promos" aria-label="Shopping benefits">
+      <div class="promo"><span aria-hidden="true">🚚</span><div><b>Free delivery</b><small>On orders over ₹999</small></div></div>
+      <div class="promo"><span aria-hidden="true">↩️</span><div><b>Easy returns</b><small>10-day hassle-free</small></div></div>
+      <div class="promo"><span aria-hidden="true">🔒</span><div><b>Secure payments</b><small>UPI, cards, COD</small></div></div>
+      <div class="promo"><span aria-hidden="true">🎧</span><div><b>24/7 support</b><small>We’re here to help</small></div></div>
+    </div>
+
+    <section id="shop">
+      <div class="sh"><div><h2 class="t">Trending products</h2><p>Hand-picked favourites with the best discounts.</p></div></div>
+      <input class="fi" type="radio" name="f" id="f-all" checked aria-label="Show all categories">
+      <input class="fi" type="radio" name="f" id="f-tech" aria-label="Show electronics">
+      <input class="fi" type="radio" name="f" id="f-fash" aria-label="Show fashion">
+      <input class="fi" type="radio" name="f" id="f-home" aria-label="Show home and living">
+      <input class="fi" type="radio" name="f" id="f-beauty" aria-label="Show beauty">
+      <div class="chips" role="group" aria-label="Filter by category">
+        <label for="f-all">All</label><label for="f-tech">Electronics</label><label for="f-fash">Fashion</label><label for="f-home">Home &amp; Living</label><label for="f-beauty">Beauty</label>
+      </div>
+      <div class="grid">
+        <article class="p tech"><div class="pic g1" aria-hidden="true"><span class="off">-40%</span><span class="wish">♡</span>🎧</div>
+          <div class="body"><span class="cat">Electronics</span><h3>Wireless Noise-Cancelling Headphones</h3><p class="d">40-hour battery, deep bass and a comfy over-ear fit.</p>
+          <div class="rate"><span class="stars" role="img" aria-label="4.5 out of 5 stars">★★★★☆</span> 4.5 (2,310)</div>
+          <div class="price"><b>₹2,999</b><s>₹4,999</s><em>40% off</em></div>
+          <div class="acts"><button class="add" type="button">Add to cart</button><button class="buy" type="button">Buy now</button></div></div></article>
+        <article class="p tech"><div class="pic g3" aria-hidden="true"><span class="off">-25%</span><span class="wish">♡</span>⌚</div>
+          <div class="body"><span class="cat">Electronics</span><h3>Fitness Smartwatch with AMOLED Display</h3><p class="d">Heart-rate, sleep tracking and 7-day battery life.</p>
+          <div class="rate"><span class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</span> 4.1 (1,180)</div>
+          <div class="price"><b>₹3,749</b><s>₹4,999</s><em>25% off</em></div>
+          <div class="acts"><button class="add" type="button">Add to cart</button><button class="buy" type="button">Buy now</button></div></div></article>
+        <article class="p fash"><div class="pic g2" aria-hidden="true"><span class="off">-50%</span><span class="wish">♡</span>👟</div>
+          <div class="body"><span class="cat">Fashion</span><h3>Everyday Cushioned Running Sneakers</h3><p class="d">Lightweight, breathable mesh with a grippy sole.</p>
+          <div class="rate"><span class="stars" role="img" aria-label="4.5 out of 5 stars">★★★★☆</span> 4.6 (3,042)</div>
+          <div class="price"><b>₹1,499</b><s>₹2,999</s><em>50% off</em></div>
+          <div class="acts"><button class="add" type="button">Add to cart</button><button class="buy" type="button">Buy now</button></div></div></article>
+        <article class="p fash"><div class="pic g4" aria-hidden="true"><span class="off new">New</span><span class="wish">♡</span>🎒</div>
+          <div class="body"><span class="cat">Fashion</span><h3>Water-Resistant Laptop Backpack 30L</h3><p class="d">Padded laptop sleeve, USB port and hidden pockets.</p>
+          <div class="rate"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span> 4.8 (640)</div>
+          <div class="price"><b>₹1,899</b></div>
+          <div class="acts"><button class="add" type="button">Add to cart</button><button class="buy" type="button">Buy now</button></div></div></article>
+        <article class="p home"><div class="pic g3" aria-hidden="true"><span class="off">-30%</span><span class="wish">♡</span>☕</div>
+          <div class="body"><span class="cat">Home &amp; Living</span><h3>Stainless Steel Insulated Coffee Mug</h3><p class="d">Keeps drinks hot for 8 hours, cold for 16.</p>
+          <div class="rate"><span class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</span> 4.2 (920)</div>
+          <div class="price"><b>₹699</b><s>₹999</s><em>30% off</em></div>
+          <div class="acts"><button class="add" type="button">Add to cart</button><button class="buy" type="button">Buy now</button></div></div></article>
+        <article class="p home"><div class="pic g4" aria-hidden="true"><span class="off">-35%</span><span class="wish">♡</span>💡</div>
+          <div class="body"><span class="cat">Home &amp; Living</span><h3>Warm Glow Bedside Table Lamp</h3><p class="d">Dimmable touch control and a modern ceramic base.</p>
+          <div class="rate"><span class="stars" role="img" aria-label="4.5 out of 5 stars">★★★★☆</span> 4.4 (512)</div>
+          <div class="price"><b>₹1,299</b><s>₹1,999</s><em>35% off</em></div>
+          <div class="acts"><button class="add" type="button">Add to cart</button><button class="buy" type="button">Buy now</button></div></div></article>
+        <article class="p beauty"><div class="pic g2" aria-hidden="true"><span class="off">-20%</span><span class="wish">♡</span>🧴</div>
+          <div class="body"><span class="cat">Beauty</span><h3>Vitamin C Brightening Face Serum</h3><p class="d">Lightweight formula for glowing, even-toned skin.</p>
+          <div class="rate"><span class="stars" role="img" aria-label="4.5 out of 5 stars">★★★★☆</span> 4.5 (1,876)</div>
+          <div class="price"><b>₹479</b><s>₹599</s><em>20% off</em></div>
+          <div class="acts"><button class="add" type="button">Add to cart</button><button class="buy" type="button">Buy now</button></div></div></article>
+        <article class="p beauty"><div class="pic g1" aria-hidden="true"><span class="off new">New</span><span class="wish">♡</span>💄</div>
+          <div class="body"><span class="cat">Beauty</span><h3>Matte Long-Wear Lipstick Set (4 shades)</h3><p class="d">Creamy, transfer-proof colour that lasts all day.</p>
+          <div class="rate"><span class="stars" role="img" aria-label="4 out of 5 stars">★★★★☆</span> 4.0 (388)</div>
+          <div class="price"><b>₹899</b></div>
+          <div class="acts"><button class="add" type="button">Add to cart</button><button class="buy" type="button">Buy now</button></div></div></article>
+      </div>
+    </section>
+
+    <div class="deal" id="deal">
+      <div><h2>Extra 10% off your first order</h2><p>Sign up today and use this code at checkout. Valid on orders above ₹1,499.</p><span class="code">WELCOME10</span></div>
+      <div class="big">60%<small>MAX DISCOUNT</small></div>
+    </div>
+
+    <div class="news">
+      <h2 class="t">Never miss a deal</h2>
+      <p style="color:var(--muted);margin:4px 0 0">Subscribe for exclusive offers and new arrivals.</p>
+      <form action="#" method="post">
+        <label class="sr" for="em">Email address</label>
+        <input id="em" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div><h4>Bazaarly</h4><p style="font-size:.92rem;margin:0">Everything you need, delivered to your door with care.</p></div>
+      <div><h4>Shop</h4><ul><li><a href="#shop">Electronics</a></li><li><a href="#shop">Fashion</a></li><li><a href="#shop">Home &amp; Living</a></li><li><a href="#shop">Beauty</a></li></ul></div>
+      <div><h4>Help</h4><ul><li><a href="#top">Track order</a></li><li><a href="#top">Returns</a></li><li><a href="#top">Shipping info</a></li><li><a href="#top">Contact us</a></li></ul></div>
+      <div><h4>Pay with</h4><ul><li>UPI · Cards · Net banking</li><li>Cash on delivery</li></ul></div>
+    </div>
+    <p class="copy">© 2026 Bazaarly. Demo storefront; products and prices are for illustration only.</p>
+  </div>
+</footer>
+</body>
+</html>
